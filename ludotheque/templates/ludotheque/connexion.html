@@ -1,0 +1,118 @@
+{% extends 'ludotheque/main.html' %}
+
+{% block title %}Connexion - Ludothèque{% endblock %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Connexion</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <button type="submit" class="btn">Se connecter</button>
+    </form>
+    <p>Pas encore de compte? <a href="{% url 'ludotheque:inscription' %}">S'inscrire</a></p>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.login-page {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.login-form {
+    flex: 1;
+    padding: 40px;
+}
+
+.login-image {
+    flex: 1;
+    background-color: #e94560;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #d0314c;
+}
+
+.login-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-links a {
+    color: #e94560;
+    text-decoration: none;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

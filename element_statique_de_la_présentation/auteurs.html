@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auteurs - Ludothèque</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles specific to auteurs page */
+    .auteurs-container {
+      padding: 2rem;
+    }
+    
+    .auteur-card {
+      background-color: #16213e;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s;
+      border-left: 4px solid #e94560;
+    }
+    
+    .auteur-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .auteur-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+    
+    .auteur-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1.5rem;
+      border: 3px solid #0f3460;
+    }
+    
+    .auteur-info {
+      flex: 1;
+    }
+    
+    .auteur-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      color: #e94560;
+    }
+    
+    .auteur-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .auteur-stat {
+      text-align: center;
+      background: #0f1a3c;
+      padding: 0.7rem;
+      border-radius: 6px;
+      min-width: 100px;
+    }
+    
+    .auteur-stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e94560;
+    }
+    
+    .auteur-stat-label {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    
+    .auteur-games {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .auteur-game {
+      background-color: #0f1a3c;
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .auteur-game:hover {
+      background-color: #0f3460;
+      transform: scale(1.05);
+    }
+    
+    .auteur-game img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .auteur-game-title {
+      font-size: 0.9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .search-auteurs {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .search-auteurs input {
+      width: 100%;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      border: none;
+      font-size: 1rem;
+      background-color: #1a1a2e;
+      color: #f1f1f1;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .auteur-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .auteur-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .auteur-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LUDOTECH</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">JEUX</a></li>
+        <li><a href="auteurs.html" class="active">AUTEURS</a></li>
+        <li><a href="list.html">MA LISTE</a></li>
+        <li><a href="account.html">MON COMPTE</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="section-title">AUTEURS</div>
+  
+  <div class="search-auteurs">
+    <input type="text" placeholder="Rechercher un auteur...">
+  </div>
+  
+  <div class="auteurs-container">
+    <!-- Auteur 1 -->
+    <div class="auteur-card">
+      <div class="auteur-header">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Hideo Kojima" class="auteur-avatar">
+        <div class="auteur-info">
+          <div class="auteur-name">Hideo Kojima</div>
+          <div class="auteur-bio">Célèbre créateur japonais de jeux vidéo, connu pour sa narration complexe et son style cinématographique.</div>
+          <div class="auteur-stats">
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">15</div>
+              <div class="auteur-stat-label">JEUX</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">4.8</div>
+              <div class="auteur-stat-label">MOYENNE</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">1986</div>
+              <div class="auteur-stat-label">DÉBUT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h3>Jeux notables :</h3>
+      <div class="auteur-games">
+        <div class="auteur-game">
+          <img src="metal_gear.jpg" alt="Metal Gear Solid">
+          <div class="auteur-game-title">Metal Gear Solid</div>
+        </div>
+        <div class="auteur-game">
+          <img src="death_stranding.jpg" alt="Death Stranding">
+          <div class="auteur-game-title">Death Stranding</div>
+        </div>
+        <div class="auteur-game">
+          <img src="P.T.logo.jpg" alt="P.T.">
+          <div class="auteur-game-title">P.T.</div>
+        </div>
+        <div class="auteur-game">
+          <img src="zoe.jpg" alt="Zone of the Enders">
+          <div class="auteur-game-title">Zone of the Enders</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Auteur 2 -->
+    <div class="auteur-card">
+      <div class="auteur-header">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Amy Hennig" class="auteur-avatar">
+        <div class="auteur-info">
+          <div class="auteur-name">Amy Hennig</div>
+          <div class="auteur-bio">Scénariste et game designer américaine, reconnue pour son travail sur la série Uncharted.</div>
+          <div class="auteur-stats">
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">12</div>
+              <div class="auteur-stat-label">JEUX</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">4.6</div>
+              <div class="auteur-stat-label">MOYENNE</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">1989</div>
+              <div class="auteur-stat-label">DÉBUT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h3>Jeux notables :</h3>
+      <div class="auteur-games">
+        <div class="auteur-game">
+          <img src="uncharted_2.jpg" alt="Uncharted 2">
+          <div class="auteur-game-title">Uncharted 2</div>
+        </div>
+        <div class="auteur-game">
+          <img src="uncharted_3.jpg" alt="Uncharted 3">
+          <div class="auteur-game-title">Uncharted 3</div>
+        </div>
+        <div class="auteur-game">
+          <img src="uncharted_4.jpg" alt="Uncharted 4">
+          <div class="auteur-game-title">Uncharted 4</div>
+        </div>
+        <div class="auteur-game">
+          <img src="legacy_kain.jpg" alt="Legacy of Kain">
+          <div class="auteur-game-title">Legacy of Kain</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Auteur 3 -->
+    <div class="auteur-card">
+      <div class="auteur-header">
+        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Todd Howard" class="auteur-avatar">
+        <div class="auteur-info">
+          <div class="auteur-name">Todd Howard</div>
+          <div class="auteur-bio">Directeur de jeu chez Bethesda, connu pour les séries The Elder Scrolls et Fallout.</div>
+          <div class="auteur-stats">
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">10</div>
+              <div class="auteur-stat-label">JEUX</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">4.7</div>
+              <div class="auteur-stat-label">MOYENNE</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">1994</div>
+              <div class="auteur-stat-label">DÉBUT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h3>Jeux notables :</h3>
+      <div class="auteur-games">
+        <div class="auteur-game">
+          <img src="skyrim.webp" alt="Skyrim">
+          <div class="auteur-game-title">Skyrim</div>
+        </div>
+        <div class="auteur-game">
+          <img src="Fallout-4.jpg" alt="Fallout 4">
+          <div class="auteur-game-title">Fallout 4</div>
+        </div>
+        <div class="auteur-game">
+          <img src="fallout_76.jpg" alt="Fallout 76">
+          <div class="auteur-game-title">Fallout 76</div>
+        </div>
+        <div class="auteur-game">
+          <img src="starfield.jpg" alt="Starfield">
+          <div class="auteur-game-title">Starfield</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Auteur 4 -->
+    <div class="auteur-card">
+      <div class="auteur-header">
+        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Roberta Williams" class="auteur-avatar">
+        <div class="auteur-info">
+          <div class="auteur-name">Roberta Williams</div>
+          <div class="auteur-bio">Pionnière des jeux d'aventure, cofondatrice de Sierra On-Line et créatrice de King's Quest.</div>
+          <div class="auteur-stats">
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">28</div>
+              <div class="auteur-stat-label">JEUX</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">4.5</div>
+              <div class="auteur-stat-label">MOYENNE</div>
+            </div>
+            <div class="auteur-stat">
+              <div class="auteur-stat-value">1980</div>
+              <div class="auteur-stat-label">DÉBUT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h3>Jeux notables :</h3>
+      <div class="auteur-games">
+        <div class="auteur-game">
+          <img src="kings_quest.jpg" alt="King's Quest">
+          <div class="auteur-game-title">King's Quest</div>
+        </div>
+        <div class="auteur-game">
+          <img src="phantasmagoria.jpg" alt="Phantasmagoria">
+          <div class="auteur-game-title">Phantasmagoria</div>
+        </div>
+        <div class="auteur-game">
+          <img src="Mystery-House.jpg" alt="Mystery House">
+          <div class="auteur-game-title">Mystery House</div>
+        </div>
+        <div class="auteur-game">
+          <img src="laura.webp" alt="Laura Bow">
+          <div class="auteur-game-title">Laura Bow</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Search functionality
+      const searchInput = document.querySelector('.search-auteurs input');
+      
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const auteurs = document.querySelectorAll('.auteur-card');
+        
+        auteurs.forEach(auteur => {
+          const auteurName = auteur.querySelector('.auteur-name').textContent.toLowerCase();
+          if (auteurName.includes(searchTerm)) {
+            auteur.style.display = 'block';
+          } else {
+            auteur.style.display = 'none';
+          }
+        });
+      });
+      
+    });
+  </script>
+</body>
+</html>

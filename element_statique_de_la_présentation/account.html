@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon compte - Ludothèque</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="account-header">
+        <div class="account-logo">LUDOTECH</div>
+        <nav>
+            <ul class="account-nav-list">
+                <li><a href="index.html">JEUX</a></li>
+                <li><a href="auteurs.html">AUTEURS</a></li>
+                <li><a href="list.html">MA LISTE</a></li>
+                <li><a href="account.html" class="active">MON COMPTE</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="account-page-title">MON COMPTE</div>
+
+    <div class="account-container">
+        <div class="account-info">
+            <div class="account-info-group">
+                <span class="account-info-label">Pseudo</span>
+                <div class="account-info-value">Ani</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Nom</span>
+                <div class="account-info-value">Skywalker</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Prénom</span>
+                <div class="account-info-value">Anakin</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Mot de passe</span>
+                <div class="account-info-value account-password-display">••••••••</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Email</span>
+                <div class="account-info-value">anakin.skywalker@gmail.com</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Type de compte</span>
+                <div class="account-info-value">Particulier</div>
+            </div>
+        </div>
+        
+        <div class="account-actions">
+            <button class="account-btn account-btn-edit">Modifier mes informations</button>
+            <button class="account-btn account-btn-logout">Déconnexion</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.account-btn-edit').addEventListener('click', function() {
+                alert('Ouverture du formulaire de modification des informations');
+            });
+            
+            document.querySelector('.account-btn-logout').addEventListener('click', function() {
+                if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                    alert('Déconnexion réussie');
+                    window.location.href = "login.html";
+                }
+            });
+
+            document.querySelector('.account-password-display').addEventListener('click', function() {
+                const current = this.textContent;
+                this.textContent = current === '••••••••' ? 'monSuperMDP123' : '••••••••';
+            });
+        });
+    </script>
+</body>
+</html>

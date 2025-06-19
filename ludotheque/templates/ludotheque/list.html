@@ -1,0 +1,138 @@
+{% extends "ludotheque/main.html" %}
+
+{% block title %}Liste de jeux{% endblock %}
+
+{% block content %}
+
+  <main class="liste-main">
+    <h1 class="liste-titre">MA LISTE DE JEUX</h1>
+
+    <div class="liste-stats">
+      <div class="liste-card">
+        <div class="liste-valeur">4</div>
+        <div class="liste-label">JEUX DANS MA LISTE</div>
+      </div>
+      <div class="liste-card">
+        <div class="liste-valeur">4.2</div>
+        <div class="liste-label">NOTE MOYENNE</div>
+      </div>
+      <div class="liste-card">
+        <div class="liste-valeur">5</div>
+        <div class="liste-label">JEUX NOTÉS</div>
+      </div>
+    </div>
+
+    <section class="liste-ajoutes">
+      <h2>Mes jeux ajoutés :</h2>
+      <!-- Ajoute ici ta liste de jeux -->
+    </section>
+ 
+    <div class="games-list">
+        <!-- Jeu 1 -->
+        <div class="game-card">
+            <img src="gta6.jpg" alt="GTA6">
+            <div class="game-info">
+                <div class="game-title">GTA VI</div>
+                <div class="rating">★★★★☆</div>
+                <div class="game-actions">
+                    <button class="btn btn-remove">Retirer</button>
+                    <button class="btn btn-rate">Commenter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Jeu 2 -->
+        <div class="game-card">
+            <img src="rl.jpg" alt="RL">
+            <div class="game-info">
+                <div class="game-title">Rocket League</div>
+                <div class="rating">★★★★★</div>
+                <div class="game-actions">
+                    <button class="btn btn-remove">Retirer</button>
+                    <button class="btn btn-rate">Commenter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Jeu 3 -->
+        <div class="game-card">
+            <img src="forza.jpg" alt="Forza">
+            <div class="game-info">
+                <div class="game-title">Forza Motorsport</div>
+                <div class="rating">★★★☆☆</div>
+                <div class="game-actions">
+                    <button class="btn btn-remove">Retirer</button>
+                    <button class="btn btn-rate">Commenter</button>
+                </div>
+            </div>
+        </div>
+            
+
+        <div class="game-card">
+            <img src="mc.png" alt="mc">
+            <div class="game-info">
+                <div class="game-title">Minecraft</div>
+                <div class="rating">★★★☆☆</div>
+                <div class="game-actions">
+                    <button class="btn btn-remove">Retirer</button>
+                    <button class="btn btn-rate">Commenter</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Plus de jeux... -->
+        
+        <!-- Message si liste vide -->
+        <!-- <div class="empty-list">
+            Vous n'avez aucun jeu dans votre liste.<br>
+            <a href="#">Parcourir les jeux</a> pour en ajouter.
+        </div> -->
+    </div>
+</div>
+  </main>
+
+<script>
+        // Script pour gérer les interactions avec la liste de jeux
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du clic sur le bouton "Retirer"
+            document.querySelectorAll('.btn-remove').forEach(button => {
+                button.addEventListener('click', function() {
+                    const gameCard = this.closest('.game-card');
+                    gameCard.style.opacity = '0';
+                    setTimeout(() => {
+                        gameCard.remove();
+                        updateStats();
+                    }, 300);
+                });
+            });
+        
+            // Gestion du clic sur le bouton "Noter"
+            document.querySelectorAll('.btn-rate').forEach(button => {
+                button.addEventListener('click', function() {
+                    const gameTitle = this.closest('.game-info').querySelector('.game-title').textContent;
+                    alert(`Commenter le jeu : ${gameTitle}`);
+                    // Ici vous pourriez ouvrir un modal de notation
+                });
+            });
+        
+            // Fonction pour mettre à jour les statistiques
+            function updateStats() {
+                const gameCount = document.querySelectorAll('.game-card').length;
+                document.querySelector('.stat-value:nth-child(1)').textContent = gameCount;
+            
+                // Calculer la note moyenne (exemple simplifié)
+                if (gameCount > 0) {
+                    let totalStars = 0;
+                    document.querySelectorAll('.rating').forEach(rating => {
+                        const stars = rating.textContent;
+                        totalStars += (stars.match(/★/g) || []).length;
+                    });
+                    const average = (totalStars / gameCount).toFixed(1);
+                    document.querySelector('.stat-value:nth-child(2)').textContent = average;
+                }
+         }
+        });    
+    </script>
+</body>
+</html>

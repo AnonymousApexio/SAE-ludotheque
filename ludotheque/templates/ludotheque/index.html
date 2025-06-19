@@ -1,0 +1,77 @@
+
+{% extends 'ludotheque/main.html' %}
+
+{% block title %}Accueil - Ludothèque{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Bienvenue à la Ludothèque</h1>
+        <p>Découvrez notre vaste collection de jeux de société</p>
+        <a href="{% url 'ludotheque:affiche_tout_jeu' %}" class="btn">Explorer les jeux</a>
+    </div>
+</section>
+
+<section class="featured">
+    <h2>Jeux populaires</h2>
+    <div class="games-grid">
+        {% for jeux in jeux_populaires %}
+        <div class="game-card">
+            <a href="{% url 'ludotheque:detail_jeu' jeux.id %}">
+                <img src="{{ jeux.photo_boite}}" alt="{{ jeux.nom }}">
+                <h3>{{ jeux.nom }}</h3>
+                <p>Par {{ jeux.auteur.nom }}</p>
+                <div class="rating">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= jeux.note_moyenne %}
+                            <span class="star filled">★</span>
+                        {% else %}
+                            <span class="star">★</span>
+                        {% endif %}
+                    {% endfor %}
+                    <span>({{ jeu.nb_avis }})</span>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="new-games">
+    <h2>Nouveautés</h2>
+    <div class="games-grid">
+        {% for jeux in derniers_jeux %}
+        <div class="game-card">
+            <a href="{% url 'ludotheque:detail_jeu' jeux.id %}">
+                <img src="{{ jeux.image.url }}" alt="{{ jeux.nom }}">
+                <h3>{{ jeux.nom }}</h3>
+                <p>Ajouté le {{ jeux.date_ajout|date:"d/m/Y" }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="popular-authors">
+    <h2>Auteurs populaires</h2>
+    <div class="authors-grid">
+        {% for auteur in auteurs_populaires %}
+        <div class="author-card">
+            <a href="{% url 'ludotheque:affiche_tout_jeu' %}?auteur={{ auteurs.id }}">
+                <img src="{{ auteurs.photo.url }}" alt="{{ auteurs.nom }}">
+                <h3>{{ auteur.nom }}</h3>
+                <div class="rating">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= auteur.note_moyenne %}
+                            <span class="star filled">★</span>
+                        {% else %}
+                            <span class="star">★</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

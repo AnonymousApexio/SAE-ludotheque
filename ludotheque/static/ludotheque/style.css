@@ -1,0 +1,843 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1a1a2e;
+    color: #f1f1f1;
+}
+
+/* Entête / navigation */
+
+header {
+    background-color: #16213e;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #0f3460;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e94560;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #e94560;
+}
+
+/* Barre de recherche */
+
+.search-bar {
+    padding: 2rem;
+    background-color: #16213e;
+    text-align: center;
+    position: relative;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.search-container input {
+    width: 50%;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    font-size: 1rem;
+    background-color: #1a1a2e;
+    color: #f1f1f1;
+}
+
+#b1 {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#b1 img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Filtres */
+
+.filters-container {
+    display: none;
+    background: #16213e;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 10px;
+    box-shadow: 15px 15px 15px 15px rgba(0,0,0,0.3);
+}
+
+.filters-container.active {
+    display: block;
+}
+
+.filter-section h4 {
+    margin-bottom: 8px;
+    color: #e94560;
+    font-size: 1.1rem;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-option {
+    background: #16213e;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.filter-option:hover {
+    background: #1c2d4e;
+}
+
+.filter-option.selected {
+    background: #e94560;
+    color: white;
+}
+
+.selected-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    background: #16213e;
+    border-radius: 8px;
+    min-height: 50px;
+}
+
+.filter-chip {
+    display: flex;
+    align-items: center;
+    background: #e94560;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.filter-chip .remove {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.filter-chip .remove:hover {
+    color: #ffb8b8;
+}
+
+.no-filters {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Sections jeux */
+
+.section-title {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #0f3460;
+    margin-bottom: 1rem;
+    color: #e94560;
+}
+
+.games-container, .games-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 0 2rem 2rem;
+    margin-top: 2rem; /* ajout pour .games-list */
+}
+
+.game-card {
+    background-color: #16213e;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.game-card:hover {
+    transform: scale(1.05); /* priorité au scale plus grand */
+}
+
+.game-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 1rem;
+}
+
+.game-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rating {
+    color: gold;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.top-rated {
+    border: 2px solid gold;
+}
+
+.new-release {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e94560;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.game-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Boutons */
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    flex: 1;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.btn-add {
+    background-color: #34C759;
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: #2ECC71;
+}
+
+.btn-remove {
+    background-color: #e94560;
+    color: white;
+}
+
+.btn-remove:hover {
+    background-color: #d13356;
+}
+
+.btn-rate {
+    background-color: #0f3460;
+    color: white;
+}
+
+.btn-rate:hover {
+    background-color: #0d2a4d;
+}
+
+/* HEADER */
+.mylist-header {
+    background-color: #121d3d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #0e3c5f;
+  }
+  
+  .mylist-logo {
+    color: #e83e8c;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .mylist-nav {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .mylist-nav-list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .mylist-nav-list a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  /* TITRE */
+  .mylist-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2.5rem 0 1.5rem;
+    color: #e83e8c;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  /* STATS */
+  .mylist-stats-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .mylist-stats-box {
+    background-color: #1b2342; /* encadré plus foncé */
+    border-radius: 12px;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    gap: 3rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  
+  .mylist-stat-item {
+    text-align: center;
+    flex: 1;
+  }
+  
+  .mylist-stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e83e8c;
+  }
+  
+  .mylist-stat-label {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 0.3rem;
+  }
+  
+  /* SECTION "Mes jeux ajoutés" */
+  .mylist-added-games {
+    padding: 1rem 2rem;
+  }
+  
+  .mylist-added-games h3 {
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 768px) {
+    .mylist-stats-box {
+      flex-direction: column;
+      gap: 2rem;
+      width: 90%;
+    }
+  }
+
+  /* Styles spécifiques à la page "Ma Liste" */
+
+.liste-main {
+    padding: 2rem;
+    background-color: #1a1a2e;
+  }
+  
+  .liste-titre {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 450; /* poids léger */
+    color: #e94560;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px; 
+    border-bottom: 3px solid #0f3460;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .liste-stats {
+    display: flex;
+    justify-content: space-around;
+    background-color: #16213e;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .liste-card {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    padding: 1rem;
+    background-color: #0f1a3c;
+    border-radius: 8px;
+  }
+  
+  .liste-valeur {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e94560;
+  }
+  
+  .liste-label {
+    margin-top: 0.5rem;
+    color: #f1f1f1;
+    font-size: 0.9rem;
+  }
+  
+  .liste-ajoutes h2 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-top: 1rem;
+  }
+  
+
+
+
+/* PAGE ACCOUNT POUR LOGIN */
+
+:root {
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+    --accent-color: #0f3460;
+    --text-color: #e94560;
+    --light-color: #f1f1f1;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.account-header {
+    background-color: var(--secondary-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.account-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.account-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.account-nav-list li {
+    margin-left: 2rem;
+}
+
+.account-nav-list li a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.account-nav-list li a:hover {
+    color: var(--text-color);
+}
+
+/* Page Title */
+.account-page-title {
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--accent-color);
+}
+
+/* Account Container */
+.account-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.account-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.account-info-group {
+    margin-bottom: 1.5rem;
+}
+
+.account-info-label {
+    font-weight: bold;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.account-info-value {
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    border: 1px solid var(--accent-color);
+}
+
+.account-password-display {
+    letter-spacing: 2px;
+}
+
+/* Buttons */
+.account-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.account-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.account-btn-edit {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.account-btn-edit:hover {
+    background-color: #0d2a4d;
+}
+
+.account-btn-logout {
+    background-color: var(--text-color);
+    color: white;
+}
+
+.account-btn-logout:hover {
+    background-color: #d13356;
+}
+
+
+
+/*PAGE LOGIN */
+:root {
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+    --accent-color: #0f3460;
+    --text-color: #e94560;
+    --light-color: #f1f1f1;
+}
+
+.login-body {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.login-header {
+    background-color: var(--secondary-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.login-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Container */
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+}
+
+/* Title */
+.login-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form */
+.login-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.login-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #aaa;
+}
+
+.login-form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    font-size: 1rem;
+}
+
+.login-form-group input:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+
+/* Button */
+.login-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--text-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.login-btn:hover {
+    background-color: #d13356;
+}
+
+/* Links */
+.login-links {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.login-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-links a:hover {
+    color: #d13356;
+}
+
+.login-links span {
+    margin: 0 0.5rem;
+    color: #666;
+}
+
+
+/* PAGE INSCRIPTION */ 
+
+:root {
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+    --accent-color: #0f3460;
+    --text-color: #e94560;
+    --light-color: #f1f1f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.inscription-body {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.inscription-header {
+    background-color: var(--secondary-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.inscription-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.inscription-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+}
+
+.inscription-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.inscription-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.inscription-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #aaa;
+}
+
+.inscription-form-group input,
+.inscription-form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    font-size: 1rem;
+}
+
+.inscription-form-group input:focus,
+.inscription-form-group select:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+
+.inscription-btn-login {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--text-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.inscription-btn-login:hover {
+    background-color: #d13356;
+}
+
+.inscription-login-links {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.inscription-login-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.inscription-login-links a:hover {
+    color: #d13356;
+}
+
+.inscription-login-links span {
+    margin: 0 0.5rem;
+    color: #666;
+}
+

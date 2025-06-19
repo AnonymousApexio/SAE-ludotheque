@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon compte - Ludothèque</title>
+    <link rel="stylesheet" href="{% static 'ludotheque/style.css' %}">
+</head>
+<body>
+    <header class="account-header">
+        <div class="account-logo">LUDOTECH</div>
+        <nav>
+            <ul class="account-nav-list">
+                <li><a href="{% url 'ludotheque:index' %}">JEUX</a></li>
+                <li><a href="{% url 'ludotheque:affiche_tout_auteur' %}">AUTEURS</a></li>
+                <li><a href="{% url 'ludotheque:mes_listes' %}">MA LISTE</a></li>
+                <li><a href="{% url 'ludotheque:mon_profil' %}" class="active">MON COMPTE</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="account-page-title">MON COMPTE</div>
+
+    <div class="account-container">
+        {% if joueur %}
+        <div class="account-info">
+            <div class="account-info-group">
+                <span class="account-info-label">Nom</span>
+                <div class="account-info-value">{{ joueur.nom }}</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Prénom</span>
+                <div class="account-info-value">{{ joueur.prenom }}</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Email</span>
+                <div class="account-info-value">{{ joueur.email }}</div>
+            </div>
+            <div class="account-info-group">
+                <span class="account-info-label">Type de compte</span>
+                <div class="account-info-value">
+                    {{ joueur.get_type_display }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="account-actions">
+            <button class="account-btn account-btn-edit" onclick="document.getElementById('edit-form').style.display='block'">
+                Modifier mes informations
+            </button>
+            <a href="{% url 'ludotheque:logout' %}" class="account-btn account-btn-logout">
+                Déconnexion
+            </a>
+        </div>
+
+        <!-- Edit Form (initially hidden) -->
+        <div id="edit-form" style="display:none; margin-top: 30px;">
+            <h3>Modifier mes informations</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="account-btn">Enregistrer</button>
+                <button type="button" class="account-btn" onclick="document.getElementById('edit-form').style.display='none'">
+                    Annuler
+                </button>
+            </form>
+        </div>
+        {% else %}
+        <div class="account-info">
+            <p>Vous n'êtes pas connecté</p>
+            <a href="{% url 'ajout_joueur' %}" class="account-btn">Se connecter</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password toggle functionality
+            document.querySelector('.account-password-display')?.addEventListener('click', function() {
+                const current = this.textContent;
+                this.textContent = current === '••••••••' ? '{{ joueur.mot_de_passe }}' : '••••••••';
+            });
+        });
+    </script>
+</body>
+</html>

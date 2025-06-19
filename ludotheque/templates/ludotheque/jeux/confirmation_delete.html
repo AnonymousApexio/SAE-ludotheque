@@ -1,0 +1,46 @@
+{% extends 'ludotheque/main.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card border-danger">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Confirmation de suppression</h5>
+        </div>
+        <div class="card-body">
+            <p>Êtes-vous sûr de vouloir supprimer le jeu suivant ?</p>
+            
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5>{{ jeu.titre }}</h5>
+                    <p class="mb-1">
+                        <strong>Année:</strong> {{ jeu.annee_sortie|default:"-" }}
+                    </p>
+                    <p class="mb-1">
+                        <strong>Éditeur:</strong> {{ jeu.editeur|default:"-" }}
+                    </p>
+                    <p class="mb-1">
+                        <strong>Catégorie:</strong> {{ jeu.categorie.nom }}
+                    </p>
+                </div>
+            </div>
+            
+            <p class="text-danger">
+                <i class="bi bi-exclamation-triangle"></i>
+                Cette action est irréversible et supprimera également tous les commentaires associés à ce jeu.
+            </p>
+            
+            <form method="post" action="{% url 'delete_jeu' jeu.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Confirmer la suppression
+                </button>
+                <a href="{% url 'detail_jeu' jeu.id %}" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Annuler
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

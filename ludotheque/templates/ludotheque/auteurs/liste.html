@@ -1,0 +1,33 @@
+{% extends 'ludotheque/main.html' %}
+
+{% block title %}Liste des Auteurs - Ludothèque{% endblock %}
+
+{% block content %}
+<h1>Liste des Auteurs</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Âge</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for auteur in auteurs %}
+        <tr>
+            <td>{{ auteur.nom }}</td>
+            <td>{{ auteur.prenom }}</td>
+            <td>{{ auteur.age }}</td>
+            <td>
+                <a href="{% url 'ludotheque:update_auteur' auteur.id %}">Modifier</a>
+                <a href="{% url 'ludotheque:confirmation_delete_auteur' auteur.id %}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'ludotheque:ajout_auteur' %}">Ajouter un auteur</a>
+{% endblock %}

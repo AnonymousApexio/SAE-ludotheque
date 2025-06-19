@@ -1,0 +1,69 @@
+{% extends 'ludotheque/main.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ title }}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {{ form.titre.label_tag }}
+            {{ form.titre }}
+            {{ form.titre.errors }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form.annee_sortie.label_tag }}
+                    {{ form.annee_sortie }}
+                    {{ form.annee_sortie.errors }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form.editeur.label_tag }}
+                    {{ form.editeur }}
+                    {{ form.editeur.errors }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.photo_boite.label_tag }}
+            {{ form.photo_boite }}
+            {{ form.photo_boite.errors }}
+            {% if form.instance.photo_boite %}
+                <img src="{{ form.instance.photo_boite }}" alt="Photo actuelle" class="img-thumbnail mt-2" style="max-width: 200px;">
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form.categorie.label_tag }}
+                    {{ form.categorie }}
+                    {{ form.categorie.errors }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form.auteur.label_tag }}
+                    {{ form.auteur }}
+                    {{ form.auteur.errors }}
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            {% if update %}Mettre à jour{% else %}Ajouter{% endif %}
+        </button>
+        <a href="{% if update %}{% url 'detail_jeu' form.instance.id %}{% else %}{% url 'affiche_tout_jeu' %}{% endif %}" class="btn btn-secondary">
+            Annuler
+        </a>
+    </form>
+</div>
+{% endblock %}
